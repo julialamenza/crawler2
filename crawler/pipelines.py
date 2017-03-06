@@ -6,6 +6,16 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class CrawlerPipeline(object):
+from scrapy.exceptions import DropItem
+
+
+class DropDuplicatesPipeline(object):
+    def __init__(self):
+        self.urls_seen = set()
+
     def process_item(self, item, spider):
-        return item
+        if item['link'] in self.urls_seen:
+            raise DropItem('Duplicate item found: {}'.format(item['link']))
+        else:
+            self.urls_seen.add(item['link'])
+            return item
