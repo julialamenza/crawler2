@@ -19,7 +19,7 @@ Abra um terminal, navegue até o diretório que contem o arquivo e digite
 
 scrapy crawl epoca
 
-Para passar os resuntados para .csv digite no terminal
+Para passar os resultados para .csv digite no terminal
 
  scrapy crawl epoca -o filename.csv
 
